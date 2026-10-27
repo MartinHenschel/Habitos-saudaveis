@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f7f3">
+  <title>VivaBem | Hábitos saudáveis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="authView" class="auth-shell">
+    <div class="auth-brand">
+      <div class="brand-mark">✓</div>
+      <span>VivaBem</span>
+    </div>
+    <div class="auth-card">
+      <div class="auth-copy">
+        <p class="eyebrow">Seu bem-estar, no seu ritmo</p>
+        <h1>Pequenos hábitos.<br><em>Grandes mudanças.</em></h1>
+        <p class="muted">Organize sua rotina, acompanhe seu progresso e cuide melhor de você todos os dias.</p>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth-tab="login">Entrar</button>
+        <button class="auth-tab" data-auth-tab="signup">Criar conta</button>
+      </div>
+      <form id="authForm">
+        <label id="nameField" class="field hidden">Nome
+          <input id="nameInput" type="text" placeholder="Como podemos te chamar?">
+        </label>
+        <label class="field">E-mail
+          <input id="emailInput" type="email" placeholder="voce@email.com" required>
+        </label>
+        <label class="field">Senha
+          <input id="passwordInput" type="password" placeholder="••••••••" minlength="4" required>
+        </label>
+        <p id="authError" class="form-error"></p>
+        <button class="primary-btn full" type="submit"><span id="authSubmitText">Entrar na minha conta</span><span>→</span></button>
+      </form>
+      <p class="auth-note">Seus dados ficam salvos apenas neste dispositivo.</p>
+    </div>
+    <p class="auth-footer">Feito para uma vida mais leve <span>•</span> VivaBem</p>
+  </div>
+
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">✓</div><span>VivaBem</span>
+      </div>
+      <nav>
+        <button class="nav-item active" data-view="dashboard"><span>⌂</span> Visão geral</button>
+        <button class="nav-item" data-view="habits"><span>☑</span> Meus hábitos</button>
+        <button class="nav-item" data-view="progress"><span>◔</span> Meu progresso</button>
+        <button class="nav-item" data-view="goals"><span>◎</span> Metas</button>
+        <button class="nav-item" data-view="reminders"><span>◷</span> Lembretes</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="quote">“Cuidar de si é um ato de amor.”</div>
+        <button id="logoutBtn" class="logout">↪ <span>Sair da conta</span></button>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <button id="mobileMenu" class="mobile-menu">☰</button>
+        <div>
+          <p class="date-label" id="todayLabel"></p>
+          <h2 id="pageTitle">Bom dia, <span class="user-name">você</span> <span class="wave">✦</span></h2>
+        </div>
+        <div class="top-actions">
+          <button id="notificationBtn" class="icon-btn" title="Notificações">♧<span id="notificationDot" class="notification-dot"></span></button>
+          <div class="avatar" id="avatar">V</div>
+        </div>
+      </header>
+
+      <section id="dashboardView" class="view active-view">
+        <div class="welcome-banner">
+          <div><p class="eyebrow" id="welcomeDate"></p><h1>Um dia de cada vez.</h1><p>Você está construindo uma versão mais saudável de si.</p></div>
+          <div class="banner-art"><span>☼</span><i></i><b></b></div>
+        </div>
+        <div class="section-heading"><div><h3>Seu dia</h3><p id="daySummary">0 de 0 hábitos concluídos</p></div><button class="text-btn" data-view-target="habits">Ver todos <span>→</span></button></div>
+        <div id="habitGrid" class="habit-grid"></div>
+        <div class="dashboard-columns">
+          <div class="panel progress-panel"><div class="panel-heading"><div><h3>Seu progresso</h3><p>Últimos 7 dias</p></div><button class="text-btn" data-view-target="progress">Detalhes →</button></div><div class="chart-wrap"><div id="miniChart" class="bar-chart"></div><div class="chart-days" id="chartDays"></div></div></div>
+          <div class="panel streak-panel"><div class="panel-heading"><div><h3>Constância</h3><p>Sua sequência atual</p></div><span class="flame">♨</span></div><div class="streak-number"><strong id="streakNumber">0</strong><span>dias</span></div><div class="streak-line"><span></span></div><p class="streak-message" id="streakMessage">Complete um hábito para começar!</p></div>
+        </div>
+      </section>
+
+      <section id="habitsView" class="view">
+        <div class="page-intro"><div><p class="eyebrow">Rotina saudável</p><h1>Meus hábitos</h1><p>Escolha ações que fazem bem para você.</p></div><button id="addHabitBtn" class="primary-btn">+ Novo hábito</button></div>
+        <div id="allHabitsList" class="all-habits-list"></div>
+      </section>
+      <section id="progressView" class="view">
+        <div class="page-intro"><div><p class="eyebrow">Acompanhe sua evolução</p><h1>Meu progresso</h1><p>Veja como sua constância está crescendo.</p></div><select id="progressRange" class="select-input"><option value="7">Últimos 7 dias</option><option value="14">Últimos 14 dias</option><option value="30">Últimos 30 dias</option></select></div>
+        <div class="stats-grid"><div class="stat-card"><span>Taxa de conclusão</span><strong id="completionRate">0%</strong><small>neste período</small></div><div class="stat-card"><span>Total concluído</span><strong id="totalCompleted">0</strong><small>tarefas realizadas</small></div><div class="stat-card"><span>Melhor sequência</span><strong id="bestStreak">0 dias</strong><small>continue assim!</small></div></div>
+        <div class="panel large-chart-panel"><div class="panel-heading"><div><h3>Atividade diária</h3><p>Hábitos concluídos por dia</p></div></div><div id="largeChart" class="large-chart"></div></div>
+      </section>
+      <section id="goalsView" class="view">
+        <div class="page-intro"><div><p class="eyebrow">Intenção e foco</p><h1>Metas por hábito</h1><p>Defina objetivos realistas para manter a motivação.</p></div></div>
+        <div id="goalsList" class="goals-list"></div>
+      </section>
+      <section id="remindersView" class="view">
+        <div class="page-intro"><div><p class="eyebrow">Não deixe passar</p><h1>Lembretes</h1><p>Escolha quando quer ser lembrado de cuidar de si.</p></div><button id="permissionBtn" class="secondary-btn">Ativar notificações</button></div>
+        <div id="remindersList" class="reminders-list"></div>
+        <div class="tip-box"><span>✦</span><div><strong>Dica do VivaBem</strong><p>Comece com poucos hábitos. A consistência é mais importante do que a quantidade.</p></div></div>
+      </section>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <div id="modal" class="modal-backdrop hidden"><div class="modal"><button class="modal-close" id="modalClose">×</button><p class="eyebrow">Personalize sua rotina</p><h2>Novo hábito</h2><form id="habitForm"><label class="field">Nome do hábito<input id="habitName" required placeholder="Ex.: Ler por 20 minutos"></label><label class="field">Ícone<select id="habitIcon"><option>◉</option><option>💧</option><option>☀</option><option>♡</option><option>♨</option><option>✦</option><option>◌</option></select></label><label class="field">Meta semanal<input id="habitGoal" type="number" min="1" max="7" value="5" required></label><label class="field">Horário do lembrete<input id="habitTime" type="time" value="08:00"></label><button class="primary-btn full" type="submit">Adicionar hábito</button></form></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
